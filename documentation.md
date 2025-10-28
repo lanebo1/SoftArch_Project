@@ -102,9 +102,17 @@ The security framework encompasses multi-factor authentication with support for 
 
 ### 3.1 Comparison of Development Models
 
-TODO: ADD TABLE![1761671918365](image/documentation/1761671918365.png)
+| Model         | Time | Quality | Cost | Docs | Extens. | Scale | Sec/Comp | Total | Avg           |
+| ------------- | ---- | ------- | ---- | ---- | ------- | ----- | -------- | ----- | ------------- |
+| Build-and-Fix | 6    | 3       | 3    | 1    | 3       | 2     | 2        | 20    | **2.9** |
+| Waterfall     | 3    | 6       | 4    | 9    | 4       | 5     | 7        | 38    | **5.4** |
+| Spiral        | 5    | 8       | 4    | 8    | 7       | 7     | 8        | 47    | **6.7** |
+| Incremental   | 8    | 9       | 7    | 7    | 9       | 8     | 9        | 57    | **8.1** |
+| Rapid Proto.  | 9    | 7       | 6    | 5    | 6       | 6     | 6        | 45    | **6.4** |
 
-The comparison of development models shows that the Incremental Model offers high flexibility allowing changes between increments, medium risk management with risks addressed incrementally, testing after each increment, regular customer feedback after each increment, moderate documentation updated with each increment, and faster time to market for basic functionality. The Waterfall Model provides low flexibility where changes are costly and difficult, high risk management with all risks at the end, testing only at the end, minimal customer involvement until final delivery, extensive upfront documentation, and longer time to market for complete product. The Agile Model demonstrates very high flexibility embracing change, low risk management with continuous risk assessment, continuous testing throughout development, continuous customer collaboration, just enough documentation for current increment, and fastest time to market for working software.
+Abbrev: Docs = Documentation, Extens. = Extensibility, Scale = Scalability, Sec/Comp = Security & Compliance; scores 0–10 (higher is better).
+
+The comparison shows that Incremental provides high flexibility with changes between increments, risks addressed per increment, testing after each increment, regular customer feedback, moderate documentation, and fast time‑to‑market for a working MVP—making it the best fit for RestoSam. Waterfall offers clear, document‑driven discipline but low flexibility, testing largely at the end, and longer time to market; it is suitable when requirements are fixed and compliance documentation is paramount. Spiral emphasizes strong risk management and high quality via iterative elaboration, but adds process overhead and cost, so it fits large internal projects with high risk. Rapid Prototyping validates requirements very quickly and aligns to customer needs early, but it can encourage throwaway or shortcut code and lighter documentation, which may hurt maintainability and compliance if not controlled. Build‑and‑Fix may be fast for trivial tasks, but it is unsuitable for a non‑trivial, compliant system due to poor documentation, quality, and security control.
 
 ### 3.2 Selected Model
 
@@ -134,15 +142,52 @@ The selected Incremental Model provides business value as restaurants can start 
 
 #### 4.1.1 Comparison Table of Methodologies
 
-TODO: ADD TABLES
+##### (a) RUP
 
-![1761672425309](image/documentation/1761672425309.png)
+| Parameter                        | Score (1 to 5) | Justification                                                                                          |
+| -------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------ |
+| Flexibility and Adaptability     | 3              | Well-structured and adaptable through phases, but heavier governance slows changes compared to Agile.  |
+| Documentation Management         | 5              | Emphasizes comprehensive artifacts (vision, SRS, architecture docs), ideal for auditability.           |
+| Handling Regulatory Requirements | 5              | Phase gates and required evidence support PCI DSS and security controls.                               |
+| Team Collaboration               | 3              | Clear roles/processes support collaboration, but ceremony is higher and slower for a 6–9 person team. |
 
-![1761672435904](image/documentation/1761672435904.png)
+##### (b) Scrum
 
-![1761672443753](image/documentation/1761672443753.png)
+| Parameter                        | Score (1 to 5) | Justification                                                                                              |
+| -------------------------------- | -------------- | ---------------------------------------------------------------------------------------------------------- |
+| Flexibility and Adaptability     | 5              | Time-boxed sprints and backlog refinement handle changing restaurant requirements and MVP evolution.       |
+| Documentation Management         | 3              | Just-enough documentation; compliance needs can be covered via Definition of Done templates.               |
+| Handling Regulatory Requirements | 4              | DevSecOps in the sprint (threat modeling, SAST/DAST, evidence in tickets) supports PCI DSS integrations.   |
+| Team Collaboration               | 5              | Strong roles (PO, SM, Dev Team), frequent ceremonies, and transparency fit the 6–9 cross-functional team. |
 
-The comparison table of methodologies shows that Scrum works with small teams of 6-9 members, uses time-boxed sprints for planning, offers high flexibility adapting to changes, provides minimal viable documentation, integrates testing in sprint, delivers regular increments, has defined roles including Scrum Master and Product Owner, and has medium scalability requiring coordination. XP works with small teams of 2-12 members, uses continuous planning, offers very high flexibility embracing change, provides light documentation, employs test-driven development, delivers frequent releases, has no formal roles, and has low scalability suitable for small teams only. Kanban works with teams of any size, uses continuous flow for planning, offers high flexibility with work in progress limits, provides minimal documentation, employs continuous testing, delivers continuously, has no formal roles, and has high scalability with flexible scaling. Waterfall works with teams of any size, uses comprehensive upfront planning, offers low flexibility with sequential phases, provides extensive documentation, employs end-stage testing, delivers single delivery, has roles including Project Manager and Team Leads, and has high scalability with well-defined phases.
+##### (c) XP
+
+| Parameter                        | Score (1 to 5) | Justification                                                                                            |
+| -------------------------------- | -------------- | -------------------------------------------------------------------------------------------------------- |
+| Flexibility and Adaptability     | 5              | Embraces change with continuous planning and small releases.                                             |
+| Documentation Management         | 2              | Prefers code and tests over documents; may be insufficient for compliance trails.                        |
+| Handling Regulatory Requirements | 3              | High engineering rigor (TDD, CI) helps quality, but lacks required documentation by default.             |
+| Team Collaboration               | 4              | Pair programming and on-site customer improve feedback, but may stress availability and team preference. |
+
+##### (d) Kanban
+
+| Parameter                        | Score (1 to 5) | Justification                                                                               |
+| -------------------------------- | -------------- | ------------------------------------------------------------------------------------------- |
+| Flexibility and Adaptability     | 4              | Continuous flow with WIP limits adapts well, but lacks sprint cadence for fixed milestones. |
+| Documentation Management         | 3              | Process-light; docs discipline must be enforced externally.                                 |
+| Handling Regulatory Requirements | 3              | Can include compliance checks in the workflow, but provides fewer built-in control points.  |
+| Team Collaboration               | 4              | Visual boards and pull-based work enhance collaboration; roles are lightweight.             |
+
+#### Overall Methodology Ratings
+
+| Methodology | Pros                                                                                                        | Cons                                                                          | Final Score    |
+| ----------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | -------------- |
+| RUP         | - Strong documentation and governance<br />- Excellent for regulated environments and audit trails          | - Heavier process for a 6–9 team<br />- Slower to adapt, higher overhead     | **4.0**  |
+| Scrum       | - Highest adaptability and focus on working increments<br />- Excellent team collaboration and transparency | - Requires discipline to maintain compliance documentation within sprints     | **4.25** |
+| XP          | - Strong engineering practices (TDD, refactoring, CI) improve quality<br />- Rapid feedback                 | - Minimal documentation and on-site customer expectations may not be feasible | **3.5**  |
+| Kanban      | - Great visibility and flow; ideal for ops/maintenance and continuous delivery                              | - Lacks time-boxing; weaker for fixed milestones without additional structure | **3.5**  |
+
+Taken together, Scrum best matches RestoSam’s needs: a small cross‑functional team delivering a working MVP quickly, adapting to changing restaurant and payment requirements, and integrating DevSecOps activities each sprint to satisfy PCI‑DSS and security evidence. RUP remains a viable choice when auditability must dominate, but its ceremony would slow early iterations. XP provides superb code quality but its documentation lightness and on‑site customer expectations are less practical here. Kanban complements Scrum for production support and DevOps flow but, by itself, offers less predictability for milestone‑driven delivery.
 
 ### 4.2 Selected Methodology
 
@@ -174,7 +219,7 @@ Organizational and cost constraints include a team size of 6-9 members with spec
 
 ### 6.1 Key Attributes
 
-Extensibility is a critical quality attribute where the system architecture supports easy addition of new features and integrations through modular design allowing independent development of mobile, web, and backend components. Plugin architecture supports payment providers and third-party services. API-first design enables future integrations such as delivery services and loyalty programs. Maintainability is ensured through clean code practices with comprehensive documentation, automated testing suites ensuring reliability during updates, version control and CI/CD pipelines for smooth deployments, and modular architecture reducing coupling between components. Security and compliance include multi-factor authentication and secure session management, encrypted data transmission and storage, regular security audits and compliance monitoring, and role-based access control with principle of least privilege. Scalability provides horizontal scaling capability from 1 to 10+ restaurants, microservices architecture supporting independent scaling of components, database sharding and caching strategies for performance, and load balancing and auto-scaling capabilities. Reliability and performance maintain 99.9% uptime requirement for restaurant operations, response times under 2 seconds for critical operations, fault-tolerant design with automatic failover mechanisms, and performance monitoring and alerting systems.
+Extensibility is a critical quality attribute where the system architecture supports easy addition of new features and integrations through modular design allowing independent development of mobile, web, and backend components. Plugin architecture supports payment providers and third-party services. API-first design enables future integrations such as delivery services and loyalty programs. Maintainability is ensured through clean code practices with comprehensive documentation, automated testing suites ensuring reliability during updates, version control and CI/CD pipelines for continuous deployments, and modular architecture reducing coupling between components. Security and compliance include multi-factor authentication and secure session management, encrypted data transmission and storage, regular security audits and compliance monitoring, and role-based access control with principle of least privilege. Scalability provides horizontal scaling capability from 1 to 10+ restaurants, microservices architecture supporting independent scaling of components, database sharding and caching strategies for performance, and load balancing and auto-scaling capabilities. Reliability and performance maintain 99.9% uptime requirement for restaurant operations, response times under 2 seconds for critical operations, fault-tolerant design with automatic failover mechanisms, and performance monitoring and alerting systems.
 
 ### 6.2 DevOps
 
@@ -186,11 +231,9 @@ The DevOps implementation includes continuous integration through automated buil
 
 ### 7.1 Use Case Diagram
 
-TODO: ADD IMAGE
+![1761688088972](image/documentation/1761688088972.png)
 
-![1761672470866](image/documentation/1761672470866.png)
-
-The Use Case Diagram illustrates the interactions between different user types and system functionality with primary actors including Customer as Guest, Restaurant Administrator, Kitchen Staff, and Waiter. Key use cases include pre-order food and reserve table, view interactive restaurant map, access multimedia menu, make payment through app, call waiter for service, manage menu and availability for Admin, process orders for Kitchen, and receive notifications for Waiter. System boundaries include Mobile Application, Web Application, Restaurant Management System, and Payment Processing System.
+This use case diagram shows three actors (Guest, Kitchen, Administrator) and their interactions with the system. Guests browse restaurants, sign up/sign in, book tables and manage bookings, pay for orders (with credit card and payment-system options as extensions of the core payment use case), leave reviews, get advice on choosing dishes, and receive status notifications such as “order in process” and “order is ready.” Kitchen staff take and view orders, update statuses and mark orders ready (triggering readiness notifications), and manage ingredient availability by marking menu items unavailable and planning stock based on pre‑order notifications. Administrators maintain the room layout, menu, prices and working time, resolve controversial cases, and track KPIs. Associations indicate who performs which actions, while include/extend relationships show payment options and the notification flow attached to order management.
 
 ### 7.2 Architecture Diagram
 
