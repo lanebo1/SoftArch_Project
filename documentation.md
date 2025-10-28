@@ -1,63 +1,63 @@
 Documentation Structure Plan
 
 1. Introduction
-1.1 Goal
-1.2 Objectives
+   1.1 Goal
+   1.2 Objectives
 2. Description of the Model
-2.1 Data Ingestion & Integration
-2.2 Data Storage & Management
-2.3 AI-Driven Insights & Predictive Analytics
-2.4 Business Intelligence & Visualization
-2.5 Security & Compliance
+   2.1 Data Ingestion & Integration
+   2.2 Data Storage & Management
+   2.3 AI-Driven Insights & Predictive Analytics
+   2.4 Business Intelligence & Visualization
+   2.5 Security & Compliance
 3. Approach: Software Development Models
-3.1 Comparison of Development Models
-3.2 Selected Model
-3.3 Alternative Approach
-3.4 Justification for Not Choosing Other Models
-3.5 Model Benefits
-3.6 Benefits of the Selected Model
+   3.1 Comparison of Development Models
+   3.2 Selected Model
+   3.3 Alternative Approach
+   3.4 Justification for Not Choosing Other Models
+   3.5 Model Benefits
+   3.6 Benefits of the Selected Model
 4. Methodologies
-4.1 Comparison of Software Development Methodologies
-4.1.1 Comparison Table of Methodologies
-4.2 Selected Methodology
-4.2.1 Benefits
+   4.1 Comparison of Software Development Methodologies
+   4.1.1 Comparison Table of Methodologies
+   4.2 Selected Methodology
+   4.2.1 Benefits
 5. Constraints
-5.1 Technical Constraints
-5.2 Security & Compliance Constraints
-5.3 Organizational & Cost Constraints
+   5.1 Technical Constraints
+   5.2 Security & Compliance Constraints
+   5.3 Organizational & Cost Constraints
 6. Quality Attributes
-6.1 Key Attributes (Extensibility, Maintainability, Security and Compliance, Scalability, Reliability and Performance)
-6.2 DevOps
+   6.1 Key Attributes (Extensibility, Maintainability, Security and Compliance, Scalability, Reliability and Performance)
+   6.2 DevOps
 7. Diagrams
-7.1 Use Case Diagram
-7.2 Architecture Diagram
-7.3 Class Diagram
-7.4 State Transition Diagram
+   7.1 Use Case Diagram
+   7.2 Architecture Diagram
+   7.3 Class Diagram
+   7.4 State Transition Diagram
 8. Plans for Implementation
-8.1 Implementation Plan
-8.1.1 Overview
-8.1.2 Phased Implementation Approach
-8.1.3 Expected Deliverables
-8.2 Testing Plan
-8.2.1 Testing Framework & Execution Strategy
-8.2.2 Expected Outcomes
-8.3 Documentation Plan
-8.3.1 Documentation Categories
-8.4 Integration (Development + Testing) Plan
-8.5 Maintenance Plan
-8.6 Business Plan
+   8.1 Implementation Plan
+   8.1.1 Overview
+   8.1.2 Phased Implementation Approach
+   8.1.3 Expected Deliverables
+   8.2 Testing Plan
+   8.2.1 Testing Framework & Execution Strategy
+   8.2.2 Expected Outcomes
+   8.3 Documentation Plan
+   8.3.1 Documentation Categories
+   8.4 Integration (Development + Testing) Plan
+   8.5 Maintenance Plan
+   8.6 Business Plan
 9. Object-Oriented Design Patterns
-9.1 Introduction
-9.2 Key OOP Design Patterns (Singleton, Factory, Observer, Strategy, Decorator, Adapter)
+   9.1 Introduction
+   9.2 Key OOP Design Patterns (Singleton, Factory, Observer, Strategy, Decorator, Adapter)
 10. Strategic Reuse
-10.1 Code Modules
-10.2 External Libraries
-10.3 Documentation
-10.4 Version Control
-10.5 Integrated Development Environment (IDE)
-10.6 Database Structure
-10.7 Other Artifacts
-10.8 ROI Calculation, Future Development, and Reuse for Other Customers
+    10.1 Code Modules
+    10.2 External Libraries
+    10.3 Documentation
+    10.4 Version Control
+    10.5 Integrated Development Environment (IDE)
+    10.6 Database Structure
+    10.7 Other Artifacts
+    10.8 ROI Calculation, Future Development, and Reuse for Other Customers
 11. Notes on Flaws and Improvements
 
 ---
@@ -102,6 +102,8 @@ The security framework encompasses multi-factor authentication with support for 
 
 ### 3.1 Comparison of Development Models
 
+TODO: ADD TABLE![1761671918365](image/documentation/1761671918365.png)
+
 The comparison of development models shows that the Incremental Model offers high flexibility allowing changes between increments, medium risk management with risks addressed incrementally, testing after each increment, regular customer feedback after each increment, moderate documentation updated with each increment, and faster time to market for basic functionality. The Waterfall Model provides low flexibility where changes are costly and difficult, high risk management with all risks at the end, testing only at the end, minimal customer involvement until final delivery, extensive upfront documentation, and longer time to market for complete product. The Agile Model demonstrates very high flexibility embracing change, low risk management with continuous risk assessment, continuous testing throughout development, continuous customer collaboration, just enough documentation for current increment, and fastest time to market for working software.
 
 ### 3.2 Selected Model
@@ -131,6 +133,14 @@ The selected Incremental Model provides business value as restaurants can start 
 ### 4.1 Comparison of Software Development Methodologies
 
 #### 4.1.1 Comparison Table of Methodologies
+
+TODO: ADD TABLES
+
+![1761672425309](image/documentation/1761672425309.png)
+
+![1761672435904](image/documentation/1761672435904.png)
+
+![1761672443753](image/documentation/1761672443753.png)
 
 The comparison table of methodologies shows that Scrum works with small teams of 6-9 members, uses time-boxed sprints for planning, offers high flexibility adapting to changes, provides minimal viable documentation, integrates testing in sprint, delivers regular increments, has defined roles including Scrum Master and Product Owner, and has medium scalability requiring coordination. XP works with small teams of 2-12 members, uses continuous planning, offers very high flexibility embracing change, provides light documentation, employs test-driven development, delivers frequent releases, has no formal roles, and has low scalability suitable for small teams only. Kanban works with teams of any size, uses continuous flow for planning, offers high flexibility with work in progress limits, provides minimal documentation, employs continuous testing, delivers continuously, has no formal roles, and has high scalability with flexible scaling. Waterfall works with teams of any size, uses comprehensive upfront planning, offers low flexibility with sequential phases, provides extensive documentation, employs end-stage testing, delivers single delivery, has roles including Project Manager and Team Leads, and has high scalability with well-defined phases.
 
@@ -176,17 +186,33 @@ The DevOps implementation includes continuous integration through automated buil
 
 ### 7.1 Use Case Diagram
 
+TODO: ADD IMAGE
+
+![1761672470866](image/documentation/1761672470866.png)
+
 The Use Case Diagram illustrates the interactions between different user types and system functionality with primary actors including Customer as Guest, Restaurant Administrator, Kitchen Staff, and Waiter. Key use cases include pre-order food and reserve table, view interactive restaurant map, access multimedia menu, make payment through app, call waiter for service, manage menu and availability for Admin, process orders for Kitchen, and receive notifications for Waiter. System boundaries include Mobile Application, Web Application, Restaurant Management System, and Payment Processing System.
 
 ### 7.2 Architecture Diagram
+
+TODO: ADD IMAGE
+
+![1761672498075](image/documentation/1761672498075.png)
 
 The system follows a microservices architecture with a frontend layer consisting of React or Vue.js web application and React Native mobile applications for iOS and Android. The API Gateway handles request routing and authentication with rate limiting and security. Microservices include User Management Service, Order Management Service, Restaurant Management Service, Payment Service, Notification Service, and Recommendation Engine Service. The data layer uses PostgreSQL for primary data, MongoDB for documents and media, and Redis for caching and sessions. Infrastructure includes Docker containers, Kubernetes orchestration, and cloud deployment on AWS or GCP.
 
 ### 7.3 Class Diagram
 
+TODO: ADD IMAGE
+
+![1761672507726](image/documentation/1761672507726.png)
+
 The Class Diagram shows core classes including User with subclasses Customer, Admin, and Staff, Restaurant, Table, Order, MenuItem, Payment, and Notification. Key relationships show User places Order, Order contains MenuItems, Restaurant has Tables, Table belongs to Restaurant, Order associated with Payment, and User receives Notifications. Design patterns include Factory Pattern for Order creation, Observer Pattern for real-time updates, and Strategy Pattern for payment processing.
 
 ### 7.4 State Transition Diagram
+
+TODO: ADD IMAGE
+
+![1761672526144](image/documentation/1761672526144.png)
 
 The State Transition Diagram shows Order States progressing from Created to Paid to Accepted by Kitchen to Being Prepared to Ready to Delivered to Table to Completed. Table States transition from Available to Reserved to Occupied to Needs Cleaning back to Available. User Session States move from Anonymous to Authenticated to Active Session to Session Expired. Payment States progress from Initiated to Processing to Completed or Failed/Refunded.
 
@@ -211,6 +237,10 @@ Expected deliverables include functional MVP with core booking and ordering feat
 ### 8.2 Testing Plan
 
 #### 8.2.1 Testing Framework & Execution Strategy
+
+TODO: ADD TABLE
+
+![1761672543333](image/documentation/1761672543333.png)
 
 Testing types include Unit Testing with Jest for frontend and JUnit for backend, Integration Testing with API testing through Postman and Newman, End-to-End Testing with Cypress for web and Appium for mobile, Performance Testing using JMeter for load testing, and Security Testing with OWASP ZAP and manual penetration testing. The testing strategy employs Test-Driven Development for critical business logic, automated testing in CI/CD pipeline, manual testing for user experience validation, and performance testing with 150+ concurrent users simulation.
 
@@ -258,6 +288,10 @@ Reusable components include authentication module with OAuth2 and JWT handling, 
 
 ### 10.2 External Libraries
 
+TODO: ADD TABLE
+
+![1761672583443](image/documentation/1761672583443.png)
+
 Frontend libraries include React or Vue.js for web interface, React Native for mobile applications, Axios for HTTP client, and Redux or Zustand for state management. Backend libraries include Spring Boot for Java services, Express.js for Node.js services, and gRPC for inter-service communication. Database and caching libraries include PostgreSQL drivers, MongoDB client libraries, and Redis client libraries. DevOps libraries include Docker for containerization, Kubernetes for orchestration, and Jenkins or GitLab CI for automation.
 
 ### 10.3 Documentation
@@ -269,6 +303,10 @@ Reusable documentation includes API documentation templates, code commenting sta
 Git workflow includes feature branch workflow, pull request reviews, automated CI/CD pipelines, semantic versioning, and Git tagging for releases. Benefits include code traceability, collaborative development, and automated quality checks.
 
 ### 10.5 Integrated Development Environment (IDE)
+
+TODO: ADD TABLE
+
+![1761672597200](image/documentation/1761672597200.png)
 
 Development environment includes Visual Studio Code with extensions, IntelliJ IDEA for Java development, Xcode for iOS development, and Android Studio for Android development. Standardized configuration includes ESLint and Prettier for code formatting, EditorConfig for consistent formatting, and pre-commit hooks for code quality.
 
