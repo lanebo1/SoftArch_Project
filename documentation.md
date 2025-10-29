@@ -253,11 +253,9 @@ The Class Diagram shows core classes including User with subclasses Customer, Ad
 
 ### 7.4 State Transition Diagram
 
-TODO: ADD IMAGE
+![1761750369440](image/documentation/1761750369440.png)
 
-![1761672526144](image/documentation/1761672526144.png)
-
-The State Transition Diagram shows Order States progressing from Created to Paid to Accepted by Kitchen to Being Prepared to Ready to Delivered to Table to Completed. Table States transition from Available to Reserved to Occupied to Needs Cleaning back to Available. User Session States move from Anonymous to Authenticated to Active Session to Session Expired. Payment States progress from Initiated to Processing to Completed or Failed/Refunded.
+This diagram depicts three parallel lifecycles. For orders: an order is created by the user, then paid, then received and accepted by the kitchen, then being prepared, then marked ready (cooked), then received by the client, then transferred to the table, and finally closed. The guest journey mirrors this with selecting an order, paying, waiting, arriving to pick it up, and confirming receipt. For restaurants: a restaurant starts open, can become overloaded as occupancy grows beyond planned capacity, shifts can set it to closed, and rule violations from the open or overloaded states move the restaurant to a banned state. For users and authorization: an unauthorized user becomes authorized after a successful sign in. Transitions are triggered by guest actions, kitchen updates, occupancy changes, and policy violations, and the system sends notifications at key steps such as order in process and order ready.
 
 ---
 
