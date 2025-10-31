@@ -217,14 +217,18 @@ The system follows a microservices architecture with a frontend layer consisting
 
 ### 7.3 Class Diagram
 
-TODO: ADD IMAGE
+![1761755006121](image/dev-documentation/1761755006121.png)
 
-![1761672507726](image/documentation/1761672507726.png)
-
-The Class Diagram shows core classes including User with subclasses Customer, Admin, and Staff, Restaurant, Table, Order, MenuItem, Payment, and Notification. Key relationships show User places Order, Order contains MenuItems, Restaurant has Tables, Table belongs to Restaurant, Order associated with Payment, and User receives Notifications. Design patterns include Factory Pattern for Order creation, Observer Pattern for real-time updates, and Strategy Pattern for payment processing.
+This diagram shows the core domain of RestoSam. Users are abstract and specialized as Customer, Staff, and Admin. Customers place Orders composed of OrderItems, optionally tied to a Table, and each Order has a Payment. Payments follow a strategy pattern via the PaymentMethod interface with concrete methods for SBP, Mir, and Visa. Restaurants aggregate Tables, MenuItems, and InventoryItems; Staff operate on KitchenTickets produced from Orders to drive preparation and readiness. Users receive Notifications, and Customers write Reviews that belong to Restaurants. AuthSession represents user sessions. Methods capture typical actions such as sign‑in, reserving tables, adding items, marking orders paid/ready, and authorizing or refunding payments; associations include cardinalities and a mix of generalization, realization, composition/aggregation, and dependencies.
 
 ### 7.4 State Transition Diagram
 
 ![1761750369440](image/documentation/1761750369440.png)
 
 This diagram depicts three parallel lifecycles. For orders: an order is created by the user, then paid, then received and accepted by the kitchen, then being prepared, then marked ready (cooked), then received by the client, then transferred to the table, and finally closed. The guest journey mirrors this with selecting an order, paying, waiting, arriving to pick it up, and confirming receipt. For restaurants: a restaurant starts open, can become overloaded as occupancy grows beyond planned capacity, shifts can set it to closed, and rule violations from the open or overloaded states move the restaurant to a banned state. For users and authorization: an unauthorized user becomes authorized after a successful sign in. Transitions are triggered by guest actions, kitchen updates, occupancy changes, and policy violations, and the system sends notifications at key steps such as order in process and order ready.
+
+### 7.5 Sequence Diagram
+
+![1761753135310](image/dev-documentation/1761753135310.png)
+
+This sequence diagram illustrates the end‑to‑end processing of an order across four participants: the guest using the client app, the order service, the kitchen subsystem, and the administrator console. The guest pays for the order and the order service handles the payment and records the outcome; once payment succeeds, the order service transfers the order for execution to the kitchen. The kitchen checks the amount of required products and either notifies a lack of products for resolution or proceeds to preparation. The administrator maintains the menu and product availability in parallel, which influences kitchen checks and prevents unavailable items from being ordered again. When preparation completes, the kitchen marks the order as ready and the order service sends a notification to the guest about the updated status. The interaction emphasizes payment confirmation before fulfillment, ingredient verification to avoid stock issues, and timely notifications that keep the guest informed.
