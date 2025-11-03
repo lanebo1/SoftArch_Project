@@ -1,15 +1,11 @@
 # Architectural Decision Records (ADRs)
 
-This document contains Architectural Decision Records (ADRs) for the RestoSam restaurant management system. ADRs capture important architectural decisions along with their context and consequences.
-
 ## ADR Template
 
 ```
 # ADR-### Short decision name
 
 **Status:** current state of the ADR (e.g., proposed, accepted, rejected, deprecated)
-
-**Date:** YYYY-MM-DD
 
 **Context:**
 Brief description of the context and constraints that led to this decision. Include:
@@ -43,15 +39,20 @@ List of alternative options considered, with brief explanations of why they were
 
 **Status:** accepted
 
-**Date:** 2025-01-01
-
 **Context:**
-The RestoSam system needs to scale from supporting 1 restaurant to 10+ restaurants within several months, handling 150+ concurrent users per restaurant during peak hours. The system requires real-time data synchronization across mobile, web, and backend components. Current constraints include a 6-9 person development team, need for independent deployments, and requirement to support multiple platforms (iOS, Android, Web). Key NFRs include high availability (99.9% uptime), sub-2-second response times for critical operations, and PCI DSS compliance for payment processing. Risks include technology stack complexity, inter-service communication overhead, and distributed system debugging challenges.
+
+- **Technical constraints:** Real-time data synchronization across mobile, web, and backend components; support for multiple platforms (iOS, Android, Web); need for independent deployments
+- **Non-functional requirements (NFRs):** High availability (99.5% uptime); sub-3-second response times for critical operations; PCI DSS compliance for payment processing
+- **Business requirements:** Scale from supporting 1 restaurant to 10+ restaurants within several months; handle 150+ concurrent users per restaurant during peak hours
+- **Risks and challenges:** Technology stack complexity; inter-service communication overhead; distributed system debugging challenges
+- **Scale considerations:** Horizontal scaling from 1 to 10+ restaurants with independent service scaling capabilities
+- **Timeline and resource constraints:** 6-9 person development team; timeline for scaling within several months
 
 **Decision:**
 We will adopt a microservices architecture using Spring Boot for Java services, with API Gateway for request routing, service mesh for inter-service communication, and container orchestration with Kubernetes. Services will be independently deployable with domain-driven design boundaries.
 
 **Alternatives:**
+
 1. **Monolithic Architecture**: Considered for simpler initial development but rejected due to scalability limitations and inability to scale individual components independently.
 2. **Serverless Architecture**: Evaluated for automatic scaling but rejected due to cold start latency issues unacceptable for real-time restaurant operations and higher operational complexity for the team.
 3. **Modular Monolith**: Considered as a middle ground but rejected because it doesn't provide the independent deployment capabilities needed for scaling from 1 to 10+ restaurants.
@@ -67,6 +68,7 @@ We will adopt a microservices architecture using Spring Boot for Java services, 
 (-) Higher infrastructure and DevOps requirements
 
 **Links:**
+
 - Architecture Diagram: `image/documentation/1761672498075.png`
 - Class Diagram: `image/documentation/1761672507726.png`
 - Implementation: `/backend/services/`
@@ -77,15 +79,20 @@ We will adopt a microservices architecture using Spring Boot for Java services, 
 
 **Status:** accepted
 
-**Date:** 2025-01-01
-
 **Context:**
-The system requires handling structured transactional data (orders, users, payments), unstructured content (menu items, customer preferences, multimedia), and high-performance caching (table availability, frequently accessed data). Data consistency is critical for financial transactions while flexibility is needed for evolving menu structures and user preferences. The system must support real-time queries, complex analytics, and scale from 1 to 10+ restaurants. PCI DSS compliance requires secure data handling. Performance requirements include sub-2-second response times for critical operations.
+
+- **Technical constraints:** Handling structured transactional data (orders, users, payments); unstructured content (menu items, customer preferences, multimedia); high-performance caching (table availability, frequently accessed data); support for real-time queries and complex analytics
+- **Non-functional requirements (NFRs):** Sub-3-second response times for critical operations; PCI DSS compliance for secure data handling; data consistency for financial transactions
+- **Business requirements:** Scale from 1 to 10+ restaurants; evolving menu structures and user preferences requiring flexible schema
+- **Risks and challenges:** Balancing data consistency with flexibility; managing multiple database technologies; data synchronization across different storage types
+- **Scale considerations:** Horizontal scaling across multiple restaurants while maintaining performance and consistency
+- **Timeline and resource constraints:** Need to support rapid scaling from single restaurant to multi-restaurant operations
 
 **Decision:**
 We will implement a hybrid data storage architecture with PostgreSQL as the primary relational database for transactional data, MongoDB for flexible document storage, and Redis for high-performance caching and session management.
 
 **Alternatives:**
+
 1. **Single PostgreSQL Database**: Considered for ACID compliance but rejected due to poor performance with unstructured data and lack of built-in caching capabilities.
 2. **Single MongoDB Database**: Evaluated for flexibility but rejected due to weaker transactional guarantees needed for payment processing and complex relational queries.
 3. **Traditional RDBMS Only**: Considered for maturity but rejected due to scaling limitations and inability to handle multimedia content efficiently.
@@ -101,6 +108,7 @@ We will implement a hybrid data storage architecture with PostgreSQL as the prim
 (-) Higher infrastructure costs
 
 **Links:**
+
 - Data Architecture: Section 2.2 of `documentation.md`
 - Implementation: `/backend/infrastructure/database/`
 
@@ -110,15 +118,20 @@ We will implement a hybrid data storage architecture with PostgreSQL as the prim
 
 **Status:** accepted
 
-**Date:** 2025-01-01
-
 **Context:**
-The system requires native mobile apps for iOS and Android, a responsive web interface, and an admin dashboard. The application needs to handle real-time updates, complex user interactions, and offline capabilities. Development team has expertise in modern web technologies but limited mobile development experience. Budget constraints limit the ability to hire specialized mobile developers. The solution must provide consistent user experience across platforms and support rapid feature development.
+
+- **Technical constraints:** Native mobile apps for iOS and Android; responsive web interface; admin dashboard; real-time updates; complex user interactions; offline capabilities
+- **Non-functional requirements (NFRs):** Consistent user experience across platforms; rapid feature development support
+- **Business requirements:** Cross-platform mobile and web presence; admin dashboard functionality
+- **Risks and challenges:** Limited mobile development experience; learning curve for cross-platform development; platform-specific limitations
+- **Scale considerations:** Support for multiple platforms with shared codebase and consistent user experience
+- **Timeline and resource constraints:** 6-9 person team with web expertise but limited mobile experience; budget constraints limiting hiring of specialized mobile developers
 
 **Decision:**
 We will use React Native for cross-platform mobile development (iOS and Android) and React for web interfaces, with a shared component library and state management layer.
 
 **Alternatives:**
+
 1. **Native iOS/Android Development**: Considered for optimal performance but rejected due to higher development costs, longer time-to-market, and maintenance complexity with separate codebases.
 2. **Progressive Web Apps (PWA)**: Evaluated for unified codebase but rejected due to limited native device access and poorer user experience for complex restaurant interactions.
 3. **Flutter**: Considered as alternative cross-platform solution but rejected due to team's existing React expertise and larger ecosystem of React libraries.
@@ -134,6 +147,7 @@ We will use React Native for cross-platform mobile development (iOS and Android)
 (-) Steeper learning curve for complex native integrations
 
 **Links:**
+
 - Mobile App Requirements: Section 5.1 of `documentation.md`
 - Implementation: `/frontend/mobile/`, `/frontend/web/`
 
@@ -143,15 +157,20 @@ We will use React Native for cross-platform mobile development (iOS and Android)
 
 **Status:** accepted
 
-**Date:** 2025-01-01
-
 **Context:**
-The project involves a 6-9 person cross-functional team with diverse skills (frontend, backend, mobile, DevOps, QA). Restaurant requirements are likely to evolve based on user feedback and market conditions. The system must be delivered incrementally with working software every 2-4 weeks. Regulatory compliance (PCI DSS) requires proper documentation and audit trails. The team operates in an agile culture with low bureaucracy. Timeline constraints require delivering MVP within months while maintaining quality and security standards.
+
+- **Technical constraints:** Cross-functional team with diverse skills (frontend, backend, mobile, DevOps, QA); agile culture with low bureaucracy
+- **Non-functional requirements (NFRs):** Regulatory compliance (PCI DSS) requiring proper documentation and audit trails; quality and security standards maintenance
+- **Business requirements:** Evolving restaurant requirements based on user feedback and market conditions; incremental delivery of working software every 2-4 weeks
+- **Risks and challenges:** Managing changing requirements; balancing speed with quality and compliance; team coordination across diverse skill sets
+- **Scale considerations:** Growing from MVP to full system while maintaining delivery cadence
+- **Timeline and resource constraints:** 6-9 person team; MVP delivery within months; 2-4 week delivery cycles
 
 **Decision:**
 We will use Scrum as the primary development methodology with 2-4 week sprints, supplemented by DevSecOps practices for security and compliance integration.
 
 **Alternatives:**
+
 1. **Waterfall**: Considered for comprehensive documentation but rejected due to inability to handle changing restaurant requirements and delayed delivery of working software.
 2. **Kanban**: Evaluated for continuous flow but rejected due to need for time-boxed deliveries and sprint-based planning for stakeholder management.
 3. **XP (Extreme Programming)**: Considered for code quality practices but rejected due to team size constraints and lack of on-site customer availability.
@@ -167,5 +186,6 @@ We will use Scrum as the primary development methodology with 2-4 week sprints, 
 (-) Sprint planning overhead
 
 **Links:**
+
 - Methodology Comparison: Section 4.1 of `documentation.md`
 - Implementation Plan: Section 8.1 of `documentation.md`
