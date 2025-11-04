@@ -188,14 +188,51 @@ Organizational and cost constraints include a team size of 6-9 members with spec
 ---
 
 ## 6. Quality Attributes
-
 ### 6.1 Key Attributes
 
-Extensibility is a critical quality attribute where the system architecture supports easy addition of new features and integrations through modular design allowing independent development of mobile, web, and backend components. Plugin architecture supports payment providers and third-party services. API-first design enables future integrations such as delivery services and loyalty programs. Maintainability is ensured through clean code practices with comprehensive documentation, automated testing suites ensuring reliability during updates, version control and CI/CD pipelines for continuous deployments, and modular architecture reducing coupling between components. Security and compliance include multi-factor authentication and secure session management, encrypted data transmission and storage, regular security audits and compliance monitoring, and role-based access control with principle of least privilege. Scalability provides horizontal scaling capability from 1 to 10+ restaurants, microservices architecture supporting independent scaling of components, database sharding and caching strategies for performance, and load balancing and auto-scaling capabilities. Reliability and performance maintain 99.9% uptime requirement for restaurant operations, response times under 2 seconds for critical operations, fault-tolerant design with automatic failover mechanisms, and performance monitoring and alerting systems.
+**Extensibility**
+
+RestoSam uses modular microservices, allowing independent development and deployment of features.
+The API-first design enables easy integration of external services such as payment providers or loyalty programs without affecting existing functionality.
+
+**Maintainability**
+
+Code quality is ensured through clean architecture, documentation, and automated testing.
+CI pipelines verify every commit with unit and integration tests.
+Modular design isolates changes to individual services, simplifying debugging and updates.
+
+**Security and Compliance**
+
+Security follows DevSecOps principles.
+The system enforces multi-factor authentication (MFA), secure sessions, and role-based access control.
+Data is encrypted with TLS 1.3 in transit and AES-256 at rest.
+Regular scans, penetration tests, and audit logs ensure PCI DSS and Russian data-protection compliance.
+
+**Scalability**
+
+RestoSam supports horizontal and vertical scaling using containerized microservices orchestrated by Kubernetes
+microservices architecture supporting independent scaling of components, database sharding and
+caching strategies for performance, and load balancing and auto-scaling capabilities.
+
+**Reliability and Performance**
+
+The system guarantees 99.9 % uptime with fault-tolerant infrastructure and automated failover
+Health checks and retry logic prevent cascading failures.
+Average response time stays under 1 second, with real-time monitoring to detect bottlenecks. Backup and disaster-recovery plans ensure rapid restoration of services and zero data loss in critical scenarios.
 
 ### 6.2 DevOps
 
-The DevOps implementation includes continuous integration through automated build and testing pipelines. Continuous deployment provides automated deployment to staging and production environments. Infrastructure as code ensures version-controlled infrastructure definitions. Monitoring and logging provide comprehensive application and infrastructure monitoring. Security integration implements DevSecOps practices with automated security scanning. Collaboration is achieved through cross-functional team practices and shared responsibility for quality.
+RestoSam applies a unified DevOps pipeline for CI/CD, IaC, and monitoring.
+
+- CI/CD: automated build, test, and deployment with rollback.
+
+- Monitoring: Prometheus, Grafana.
+
+- Security: SAST/DAST scans in CI/CD detect vulnerabilities early.
+
+- Collaboration: shared responsibility of dev, QA, and ops teams.
+
+This approach ensures quick, reliable releases and stable operation.
 
 ---
 
