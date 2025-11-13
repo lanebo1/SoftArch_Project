@@ -246,9 +246,7 @@ This use case diagram shows three actors (Guest, Kitchen, Administrator) and the
 
 ### 7.2 Architecture Diagram
 
-TODO: ADD IMAGE
-
-![1761672498075](image/documentation/7.2.Architecture-Diagram.png)
+![1761672498075](image/documentation/7.2.Architecture_Diagram.png)
 
 The system follows a microservices architecture with a frontend layer consisting of React or Vue.js web application and React Native mobile applications for iOS and Android. The API Gateway handles request routing and authentication with rate limiting and security. Microservices include User Management Service, Order Management Service, Restaurant Management Service, Payment Service, Notification Service, and Recommendation Engine Service. The data layer uses PostgreSQL for primary data, MongoDB for documents and media, and Redis for caching and sessions. Infrastructure includes Docker containers, Kubernetes orchestration, and cloud deployment on AWS or GCP.
 
