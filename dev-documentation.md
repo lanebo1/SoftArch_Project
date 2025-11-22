@@ -210,8 +210,8 @@ Regular scans, penetration tests, and audit logs ensure PCI DSS and Russian data
 
 **Scalability**
 
-RestoSam supports horizontal and vertical scaling using containerized microservices orchestrated by Kubernetes
-microservices architecture supporting independent scaling of components, database sharding and
+RestoSam supports horizontal and vertical scaling using containerized microservices orchestrated by Kubernetes.
+Microservices architecture supporting independent scaling of components, database sharding and
 caching strategies for performance, and load balancing and auto-scaling capabilities.
 
 **Reliability and Performance**
@@ -222,7 +222,7 @@ Average response time stays under 1 second, with real-time monitoring to detect 
 
 ### 6.2 DevOps
 
-RestoSam applies a unified DevOps pipeline for CI/CD, IaC, and monitoring.
+RestoSam applies a unified DevOps pipeline for CI/CD, and monitoring.
 
 - CI/CD: automated build, test, and deployment with rollback.
 
@@ -267,6 +267,93 @@ This diagram depicts three parallel lifecycles. For orders: an order is created 
 ![1761753135310](image/dev-documentation/1761753135310.png)
 
 This sequence diagram illustrates the end‑to‑end processing of an order across four participants: the guest using the client app, the order service, the kitchen subsystem, and the administrator console. The guest pays for the order and the order service handles the payment and records the outcome; once payment succeeds, the order service transfers the order for execution to the kitchen. The kitchen checks the amount of required products and either notifies a lack of products for resolution or proceeds to preparation. The administrator maintains the menu and product availability in parallel, which influences kitchen checks and prevents unavailable items from being ordered again. When preparation completes, the kitchen marks the order as ready and the order service sends a notification to the guest about the updated status. The interaction emphasizes payment confirmation before fulfillment, ingredient verification to avoid stock issues, and timely notifications that keep the guest informed.
+
+---
+
+## 8. Implementation, Testing & Maintenance
+
+### 8.1 Implementation Plan
+
+**Phase 1 (Months 1-3) — Core Platform**
+- Set up cloud infrastructure (Kubernetes, CI/CD, monitoring)
+- Implement API gateway, authentication (JWT)
+- Build core services: User, Restaurant, Table, Menu
+- Deliverable: API spec, dev environment
+
+**Phase 2 (Months 4-5) — Booking**
+- Hall plan editor
+- Booking flow with table selection
+- Real-time availability (Redis)
+- Deliverable: Booking UI
+
+**Phase 3 (Months 6-7) — Pre-order & Payments**
+- Payment integration (Mir/SBP/Visa)
+- Prepayment flows and refunds
+- Multimedia menu system
+- Deliverable: Secure payment flows, PCI DSS compliance
+
+**Phase 4 (Months 8-9) — Kitchen & Waiter Features**
+- Kitchen ticket system, order tracking
+- Waiter call, bill split, in-place payment
+- Offline resilience
+- Deliverable: Kitchen dashboard, waiter notifications
+
+**Phase 5 (Months 10-11) — Recommendations & Analytics**
+- AI recommendation engine
+- Restaurant search
+- Admin dashboards
+- Deliverable: Analytics
+
+**Phase 6 (Month 12) — Production**
+- Pilot with 1-3 restaurants
+- Security audit
+- Deliverable: Production release
+
+**Resources:** Product Owner, Scrum Master, Backend (3), Frontend (2), Mobile (1), DevOps/SRE (1), QA (1-2)
+
+**Tools:** Git, Docker, Kubernetes, GitHub Actions, Prometheus, Grafana
+
+### 8.2 Testing Plan
+
+**Unit Testing**
+- Tools: Go testing, Testify, Jest
+- Coverage: 80%+
+- Run: Every commit in CI
+
+**API Testing**
+- Tools: Postman, httptest
+- Run: After builds
+
+**Integration Testing**
+- Tools: TestContainers
+- Run: Each phase
+
+**E2E Testing**
+- Tools: Selenium, Playwright
+- Test: booking → payment → kitchen → delivery
+- Run: Before release
+
+**Release Ready:** All tests pass, 80%+ coverage, no critical bugs
+
+### 8.3 Maintenance Plan
+
+**Preventive**
+- Weekly audits
+- Monthly DB optimization
+- Daily security scans
+
+**Updates**
+- Payment system changes
+- New regulations
+- Technology upgrades
+
+**Improvements**
+- UI/UX enhancements
+- New features
+- Performance optimization
+
+**Tools:** Prometheus, Grafana, daily backups
+
 
 ---
 
