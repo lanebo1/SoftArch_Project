@@ -273,6 +273,25 @@ This sequence diagram illustrates the end‑to‑end processing of an order acro
 ## 8. Implementation, Testing & Maintenance
 
 ### 8.1 Implementation Plan
+**Technologies & Tools**
+
+Languages: Go, TypeScript, JavaScript, SQL
+
+Frontend: React, React Native
+
+Backend: Go (REST/gRPC), PostgreSQL, Redis, MongoDB
+
+Version control: Git, GitHub
+
+CI/CD: GitHub Actions
+
+Infrastructure: Docker, Kubernetes, Nginx, GitHub Actions
+
+Monitoring: Prometheus, Grafana
+
+IDEs: GoLand, VS Code, Android Studio
+
+Other: gRPC, JWT, OpenAPI
 
 **Phase 1 (Months 1-3) — Core Platform**
 - Set up cloud infrastructure (Kubernetes, CI/CD, monitoring)
@@ -309,7 +328,7 @@ This sequence diagram illustrates the end‑to‑end processing of an order acro
 - Security audit
 - Deliverable: Production release
 
-**Resources:** Product Owner, Scrum Master, Backend (3), Frontend (2), Mobile (1), DevOps/SRE (1), QA (1-2)
+**Resources:** Product Owner, Scrum Master, Backend (2), Frontend (2), Mobile (1), DevOps/SRE (1), QA (1-2)
 
 **Tools:** Git, Docker, Kubernetes, GitHub Actions, Prometheus, Grafana
 
@@ -318,7 +337,7 @@ This sequence diagram illustrates the end‑to‑end processing of an order acro
 **Unit Testing**
 - Tools: Go testing, Testify, Jest
 - Coverage: 80%+
-- Run: Every commit in CI
+- Run: Every PR in CI
 
 **API Testing**
 - Tools: Postman, httptest
@@ -337,23 +356,17 @@ This sequence diagram illustrates the end‑to‑end processing of an order acro
 
 ### 8.3 Maintenance Plan
 
-**Preventive**
-- Weekly audits
-- Monthly DB optimization
-- Daily security scans
+RestoSam requires three types of maintenance: Corrective, Adaptive, and Perfective, applied sequentially after each release.
 
-**Updates**
-- Payment system changes
-- New regulations
-- Technology upgrades
+- **Corrective Maintenance** focuses on resolving bugs affecting booking, payments, or kitchen workflows. Activities include issue reporting via Help Desk, prioritization, fixing, and regression testing.
 
-**Improvements**
-- UI/UX enhancements
-- New features
-- Performance optimization
+- **Adaptive Maintenance** ensures compatibility with changing external systems such as Mir/SBP/Visa APIs, restaurant business rules, OS/browser updates, and regulatory changes. Activities include monitoring changes, requirements analysis, architecture adjustments, implementation, and testing.
 
-**Tools:** Prometheus, Grafana, daily backups
+- **Perfective Maintenance** improves performance, UX, and functionality, including enhancements to recommendation accuracy, booking flow, and dashboards. Activities include backlog grooming, planning, implementation, and validation.
 
+- **Resources:** Backend (1–2), Frontend (1), Mobile (1), QA (1–2), DevOps/SRE (1), Product Owner, Support.
+
+- **Methodology & SDLC:** Maintenance follows the same Incremental SDLC and Scrum methodology as development, with fixes and improvements integrated into 2–4-week sprints and hotfixes delivered as needed.
 
 ---
 
